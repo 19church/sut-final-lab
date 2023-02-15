@@ -7,18 +7,18 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestNegative_Name(t *testing.T) {
+func TestNegative_Customer(t *testing.T) {
 	g := NewGomegaWithT(t)
 
-	t.Run("NegativeTest_Name", func(t *testing.T) {
+	t.Run("NegativeTest_CustomerID", func(t *testing.T) {
 		c := Customer{
-			Name:       "",
+			Name:       "Jojo",
 			Email:      "jojo@gmail.com",
-			CustomerID: "L6304249",
+			CustomerID: "B6304249",
 		}
 		ok, err := govalidator.ValidateStruct(c)
 		g.Expect(ok).NotTo(BeTrue())
 		g.Expect(err).ToNot(BeNil())
-		g.Expect(err.Error()).To(Equal("Name can not be blank"))
+		g.Expect(err.Error()).To(Equal("CustomerID: B6304249 does not validate as matches(^[LMH]\\d{7}$)"))
 	})
 }
